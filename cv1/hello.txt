@@ -1,1 +1,3 @@
 Hello, world, again!
+Hello, world!
+Hello, error! Enter some text:
