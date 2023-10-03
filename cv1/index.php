@@ -39,6 +39,7 @@ fwrite($f, "Hello, world!\n");
 fwrite($f, "Hello, error! Enter some text:\n");
 
 echo is_dir('./');
+echo file_exists('hello.txt');
 
 echo getcwd();
 
