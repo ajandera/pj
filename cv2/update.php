@@ -10,17 +10,16 @@ $description = $_REQUEST["description"];
 $number = $_REQUEST["number"];
 $rowid = $_REQUEST["rowid"];
 
-$updateStmt="update $tableName set meno='$cn', email='$mail', mesto='$locality', popis='$description', telefon='$number' where rowid=$rowid;";
+
 
 try {
-  $stmt = $pdo->prepare("UPDATE ? SET meno = ?, emnail = ?, mesto = ?, popis = ?, telefon = ? where rowid = ?");
-  $stmt->bindParam(1, $tableName);
-  $stmt->bindParam(2, $cn);
-  $stmt->bindParam(3, $mail);
-  $stmt->bindParam(4, $locality);
-  $stmt->bindParam(5, $description);
-  $stmt->bindParam(6, $number);
-  $stmt->bindParam(7, $rowid);
+  $stmt = $pdo->prepare("UPDATE address SET meno = ?, email = ?, mesto = ?, popis = ?, telefon = ? where rowid = ?");
+  $stmt->bindParam(1, $cn);
+  $stmt->bindParam(2, $mail);
+  $stmt->bindParam(3, $locality);
+  $stmt->bindParam(4, $description);
+  $stmt->bindParam(5, $number);
+  $stmt->bindParam(6, $rowid);
   $stmt->execute();
 } catch (PDOException $e) {
   displayErrMsg("Error: " . $e->getMessage());

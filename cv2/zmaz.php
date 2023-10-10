@@ -6,9 +6,8 @@ require "common.php";
 $rowid = $_REQUEST["rowid"];
 
 try {
-  $stmt = $pdo->prepare("DELETE FROM ? WHERE rowid = ?");
-  $stmt->bindParam(1, $tableName);
-  $stmt->bindParam(2, $rowid);
+  $stmt = $pdo->prepare("DELETE FROM address WHERE rowid = ?");
+  $stmt->bindParam(1, $rowid);
   $stmt->execute();
 } catch (PDOException $e) {
   displayErrMsg("Error: " . $e->getMessage());

@@ -53,11 +53,11 @@ function generateHtmlForm($formValues, $actionScript, $submitLabel)
 <table>
  <tr>
   <td><?php if ($_SESSION['lan']=="sk") echo "meno:"; else echo "name:";?></td>
-  <td><input type="text" size="35" name="cn" value="<?php echo $formValues["cn"]?>" ></td>
+  <td><input type="text" size="35" name="cn" value="<?php echo $formValues["cn"]?>" required ></td>
 </tr>
 <tr>
  <td>email:</td>
- <td><input type="text" size="35" name="mail" value="<?php echo $formValues["mail"]?>" ></td>
+ <td><input type="email" size="35" name="mail" value="<?php echo $formValues["mail"]?>" required></td>
 </tr>
 <tr>
  <td><?php if ($_SESSION['lan']=="sk") echo "mesto:"; else echo "city:";?></td>

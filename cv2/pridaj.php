@@ -30,6 +30,7 @@ try {
   $stmt->bindParam(3, $locality);
   $stmt->bindParam(4, $description);
   $stmt->bindParam(5, $number);
+  $stmt->execute();
 } catch (PDOException $e) {
   displayErrMsg("Error: " . $e->getMessage());
   exit();
