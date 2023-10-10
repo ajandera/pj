@@ -36,9 +36,9 @@ if (!isset($choice)) {
     generateHTMLHeader("Directory","Search by followings criteria");
   }
   if ($_SESSION['lan']=="sk") {
-    generateHtmlForm(0,"najdi.php", "vyhľadaj");
+    generateHtmlFormSearch(0,"najdi.php", "vyhľadaj");
   } else {
-    generateHtmlForm(0,"najdi.php", "search");
+    generateHtmlFormSearch(0,"najdi.php", "search");
   }
 } else if($choice=="Pridaj záznam" || $choice=="Add A New Entry") {
   if ($_SESSION['lan'] == "sk") {

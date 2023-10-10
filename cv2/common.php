@@ -47,7 +47,6 @@ echo "<div class=\"errmsg\">$message</div>";
 }
 
 function generateHtmlForm($formValues, $actionScript, $submitLabel)
-
 { ?>
 <form method="post" action="<?php echo $actionScript?>">
 <table>
@@ -58,6 +57,41 @@ function generateHtmlForm($formValues, $actionScript, $submitLabel)
 <tr>
  <td>email:</td>
  <td><input type="email" size="35" name="mail" value="<?php echo $formValues["mail"]?>" required></td>
+</tr>
+<tr>
+ <td><?php if ($_SESSION['lan']=="sk") echo "mesto:"; else echo "city:";?></td>
+ <td><input type="text" size="35" name="locality" value="<?php echo $formValues["locality"]?>" required ></td>
+</tr>
+<tr>
+ <td><?php if ($_SESSION['lan']=="sk") echo "popis:"; else echo "description:";?></td>
+ <td><input type="text" size="35" name="description" value="<?php echo $formValues["description"]?>" required ></td>
+</tr>
+<tr>
+ <td><?php if ($_SESSION['lan']=="sk") echo "telefon:"; else echo "telephone:";?></td>
+ <td><input type="text" size="35" name="number" value="<?php echo $formValues["number"]?>" required ></td>
+</tr>
+<tr>
+ <td></td>
+ <td>
+<input type="submit" value="<?php echo $submitLabel?>" >
+ </td>
+ </tr>
+ </table>
+</form>
+
+<?php }
+
+function generateHtmlFormSearch($formValues, $actionScript, $submitLabel)
+{ ?>
+<form method="post" action="<?php echo $actionScript?>">
+<table>
+ <tr>
+  <td><?php if ($_SESSION['lan']=="sk") echo "meno:"; else echo "name:";?></td>
+  <td><input type="text" size="35" name="cn" value="<?php echo $formValues["cn"]?>" ></td>
+</tr>
+<tr>
+ <td>email:</td>
+ <td><input type="email" size="35" name="mail" value="<?php echo $formValues["mail"]?>" ></td>
 </tr>
 <tr>
  <td><?php if ($_SESSION['lan']=="sk") echo "mesto:"; else echo "city:";?></td>
