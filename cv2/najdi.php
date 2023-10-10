@@ -19,36 +19,56 @@ if(!$cn && !$mail && !$locality && !$description && !$number) {
 }
 
 try {
-  $stmt = $pdo->prepare("select * from ?");
-  $stmt->bindParam(1, $tableName);
-
+  $sql = "select * from address WHERE ";
   if ($cn) {
-    $stmt->where("meno like :meno");
-    $stmt->bindParam(":meno", '%'.$cn.'%');
+    $sql .= "meno like :meno AND";
   }
-  
+
   if ($mail) {
-    $stmt->where("email like :mail");
-    $stmt->bindParam(":mail", '%'.$mail.'%');
+    $sql .= "email like :mail AND";
   }
   
   if ($locality) {
-    $stmt->where("mesto like :loc");
-    $stmt->bindParam(":loc", '%'.$mail.'%');
+    $sql .= "mesto like :loc AND";
   }
   
   if ($description) {
-    $stmt->where("popis like :desc");
-    $stmt->bindParam(":desc", '%'.$description.'%');
+    $sql .= "popis like :desc AND";
   }
   
   if ($number) {
-    $stmt->where("telefon like :number");
-    $stmt->bindParam(":number", '%'.$number.'%');
+    $sql .= "telefon like :number AND";
+  }
+
+  $stmt = $pdo->prepare(rtrim($sql, "AND"));
+
+  if ($cn) {
+    $s = '%'.$cn.'%';
+    $stmt->bindParam(":meno", $s);
+  }
+  
+  if ($mail) {
+    $s = '%'.$mail.'%';
+    $stmt->bindParam(":mail", $s);
+  }
+  
+  if ($locality) {
+    $s = '%'.$locality.'%';
+    $stmt->bindParam(":loc", $s);
+  }
+  
+  if ($description) {
+    $s = '%'.$description.'%';
+    $stmt->bindParam(":desc", $s);
+  }
+  
+  if ($number) {
+    $s = '%'.$number.'%';
+    $stmt->bindParam(":number", $s);
   }
   
   $stmt->execute();
-  $data = $stmt->fetch(PDO::FETCH_ASSOC);
+  $data = $stmt->fetchAll();
 } catch (PDOException $e) {
   displayErrMsg("Error: " . $e->getMessage());
   exit();
@@ -65,8 +85,8 @@ if ($_SESSION['lan']=="sk") {
 }
 foreach ($data as $row)
 {
-  echo"<tr><td>".$row->MENO."</td><td>".$row->EMAIL."</td><td>".$row->MESTO."</td><td>".$row->POPIS;
-  echo "</td><td>".$row->TELEFON."</td><td><a href=\"uprav.php?rowid=".$row->ROWID."\">Uprav</a>/<a href=\"zmaz.php?rowid=".$row->ROWID."\">Zma�</td>";
+  echo"<tr><td>".$row['MENO']."</td><td>".$row['EMAIL']."</td><td>".$row['MESTO']."</td><td>".$row['POPIS'];
+  echo "</td><td>".$row['TELEFON']."</td><td><a href=\"uprav.php?rowid=".$row['ROWID']."\">Uprav</a>/<a href=\"zmaz.php?rowid=".$row['ROWID']."\">Zmaz</td>";
 }
 echo "</table>";
 returnToMain();

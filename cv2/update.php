@@ -10,8 +10,6 @@ $description = $_REQUEST["description"];
 $number = $_REQUEST["number"];
 $rowid = $_REQUEST["rowid"];
 
-
-
 try {
   $stmt = $pdo->prepare("UPDATE address SET meno = ?, email = ?, mesto = ?, popis = ?, telefon = ? where rowid = ?");
   $stmt->bindParam(1, $cn);

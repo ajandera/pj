@@ -29,7 +29,7 @@ if (!isset($choice)) {
     generateHTMLHeader("Directory","Click below to enter the directory");
   }
   generateFrontPage("uvod");
-} else if($choice == "Najdi adresu" || $choice=="Search Address") {
+} else if($choice == "Nájdi adresu" || $choice=="Search Address") {
   if ($_SESSION['lan']=="sk") {
     generateHTMLHeader("Adresár","Vyhladávajte pomocou nasledujúcich kritérií");
   } else {
