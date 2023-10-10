@@ -1,17 +1,24 @@
 <?php
 session_start();
 
-include "common.php";
-include "spoj.php";
+require "common.php";
 
 $rowid = $_REQUEST["rowid"];
-$deleteStmt="delete from $tableName where rowid=$rowid";
 
-if(!mysql_query($deleteStmt)){
-  DisplayErrMsg("chyba vo vykonávaní $deleteStmt stmt");
+try {
+  $stmt = $pdo->prepare("DELETE FROM ? WHERE rowid = ?");
+  $stmt->bindParam(1, $tableName);
+  $stmt->bindParam(2, $rowid);
+  $stmt->execute();
+} catch (PDOException $e) {
+  displayErrMsg("Error: " . $e->getMessage());
   exit();
 }
-if ($_SESSION['lan']=="sk") GenerateHTMLHeader("Zmazanie záznamu","Záznam bol úspešne zmazaný");
-else GenerateHTMLHeader("Deleting entry","Entry was deleted successfuly");
-ReturnToMain(); 
+
+if ($_SESSION['lan'] == "sk") {
+  generateHTMLHeader("Zmazanie zaznamu","Zoznam bol uspesne zmazana");
+} else {
+  generateHTMLHeader("Deleting entry","Entry was deleted successfuly");
+}
+returnToMain(); 
 ?>

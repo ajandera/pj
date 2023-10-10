@@ -1,5 +1,6 @@
 <?php
-//session_start();
+require "conn.php";
+
 function generatehtmlheader($topic,$message) {
 ?>
 <head>
@@ -13,7 +14,7 @@ function generatehtmlheader($topic,$message) {
 <?php
 }
 
-function GenerateFrontPage(){?>
+function generateFrontPage(){?>
 
 <form method="post" action="index.php">
 <table >
@@ -41,11 +42,11 @@ function GenerateFrontPage(){?>
 </p>
 <?php }
 
-function DisplayErrMsg($message) {
+function displayErrMsg($message) {
 echo "<div class=\"errmsg\">$message</div>";
 }
 
-function GenerateHtmlForm($formValues,$actionScript,$submitLabel)
+function generateHtmlForm($formValues, $actionScript, $submitLabel)
 
 { ?>
 <form method="post" action="<?php echo $actionScript?>">
@@ -81,37 +82,38 @@ function GenerateHtmlForm($formValues,$actionScript,$submitLabel)
 
 <?php }
 
-function ReturnToMain()
+function returnToMain()
 {?>
 <br><form action="index.php?l=<?php echo $_SESSION['lan'];?>&choice=uns" method="post">
-<input type="submit" value="<?php if ($_SESSION['lan']=="sk") echo "N�vrat na hlavn� str�nku"; else echo "Return to main page"; ?>">
+<input type="submit" value="<?php if ($_SESSION['lan']=="sk") { echo "Navrat na hlavnu stranku"; } else { echo "Return to main page"; } ?>">
 <?php }
 
-function GenerateHTMLZoznam(){
-
-include "spoj.php";
-$selectStmt="select * from $tableName";
-
-if(!($result=mysql_query($selectStmt))){
-  DisplayErrMsg("Chyba vo vykonani $selectStmt stmt");
- exit();
-}
-?>
+function generateHTMLZoznam(){
+  try {
+    $stmt = $pdo->prepare("SELECT * FROM ?");
+    $stmt->bindParam(1, $tableName);
+    $stmt->execute();
+    $data = $stmt->fetch(PDO::FETCH_ASSOC);
+  } catch (PDOException $e) {
+    displayErrMsg("Error: " . $e->getMessage());
+    exit();
+  }
+  ?>
 <table class="tab2">
 <?php 
-if ($_SESSION['lan']=="sk")
+if ($_SESSION['lan'] == "sk") {
    echo "<tr><td>Meno</td><td>E-mail</td><td>Mesto</td><td>Popis</td><td>Tel.cislo</td><td>zmeni�/zmaza�</td></tr>";
-else    echo "<tr><td>Name</td><td>E-mail</td><td>City</td><td>Description</td><td>Phone number</td><td>modify/erase</td></tr>";
+} else {
+    echo "<tr><td>Name</td><td>E-mail</td><td>City</td><td>Description</td><td>Phone number</td><td>modify/erase</td></tr>";
+}
 
-while ($row=mysql_fetch_object($result))
-{
-if ($_SESSION['lan']=="sk") echo"<tr><td>".$row->MENO."</td><td>".$row->EMAIL."</td><td>".$row->MESTO."</td><td>".$row->POPIS."</td><td>".$row->TELEFON."</td><td><a href=\"uprav.php?rowid=".$row->ROWID."\">Uprav</a>/<a href=\"zmaz.php?rowid=".$row->ROWID."\">Zma�</td>";
-else echo"<tr><td>".$row->MENO."</td><td>".$row->EMAIL."</td><td>".$row->MESTO."</td><td>".$row->POPIS."</td><td>".$row->TELEFON."</td><td><a href=\"uprav.php?rowid=".$row->ROWID."\">Modify</a>  <a href=\"zmaz.php?rowid=".$row->ROWID."\">Delete</td>";
+foreach ($data as $row) {
+  if ($_SESSION['lan']=="sk") {
+    echo"<tr><td>".$row->MENO."</td><td>".$row->EMAIL."</td><td>".$row->MESTO."</td><td>".$row->POPIS."</td><td>".$row->TELEFON."</td><td><a href=\"uprav.php?rowid=".$row->ROWID."\">Uprav</a>/<a href=\"zmaz.php?rowid=".$row->ROWID."\">Zma�</td>";
+  } else {
+    echo"<tr><td>".$row->MENO."</td><td>".$row->EMAIL."</td><td>".$row->MESTO."</td><td>".$row->POPIS."</td><td>".$row->TELEFON."</td><td><a href=\"uprav.php?rowid=".$row->ROWID."\">Modify</a>  <a href=\"zmaz.php?rowid=".$row->ROWID."\">Delete</td>";
+  }
 }
 echo "</table>";
-mysql_free_result($result);
-ReturnToMain();
-
-
+returnToMain();
 }
-?>
