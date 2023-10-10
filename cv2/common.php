@@ -88,12 +88,12 @@ function returnToMain()
 <input type="submit" value="<?php if ($_SESSION['lan']=="sk") { echo "Navrat na hlavnu stranku"; } else { echo "Return to main page"; } ?>">
 <?php }
 
-function generateHTMLZoznam(){
+function generateHTMLZoznam($pdo) {
   try {
-    $stmt = $pdo->prepare("SELECT * FROM ?");
+    $stmt = $pdo->prepare("SELECT * FROM address");
     $stmt->bindParam(1, $tableName);
     $stmt->execute();
-    $data = $stmt->fetch(PDO::FETCH_ASSOC);
+    $data = $stmt->fetchAll();
   } catch (PDOException $e) {
     displayErrMsg("Error: " . $e->getMessage());
     exit();
@@ -102,16 +102,16 @@ function generateHTMLZoznam(){
 <table class="tab2">
 <?php 
 if ($_SESSION['lan'] == "sk") {
-   echo "<tr><td>Meno</td><td>E-mail</td><td>Mesto</td><td>Popis</td><td>Tel.cislo</td><td>zmeni�/zmaza�</td></tr>";
+   echo "<tr><td>Meno</td><td>E-mail</td><td>Mesto</td><td>Popis</td><td>Tel.cislo</td><td>zmenit/zmazat</td></tr>";
 } else {
     echo "<tr><td>Name</td><td>E-mail</td><td>City</td><td>Description</td><td>Phone number</td><td>modify/erase</td></tr>";
 }
 
 foreach ($data as $row) {
   if ($_SESSION['lan']=="sk") {
-    echo"<tr><td>".$row->MENO."</td><td>".$row->EMAIL."</td><td>".$row->MESTO."</td><td>".$row->POPIS."</td><td>".$row->TELEFON."</td><td><a href=\"uprav.php?rowid=".$row->ROWID."\">Uprav</a>/<a href=\"zmaz.php?rowid=".$row->ROWID."\">Zma�</td>";
+    echo"<tr><td>".$row['MENO']."</td><td>".$row['EMAIL']."</td><td>".$row['MESTO']."</td><td>".$row['POPIS']."</td><td>".$row['TELEFON']."</td><td><a href=\"uprav.php?rowid=".$row['ROWID']."\">Uprav</a>/<a href=\"zmaz.php?rowid=".$row['ROWID']."\">Zmaz</td>";
   } else {
-    echo"<tr><td>".$row->MENO."</td><td>".$row->EMAIL."</td><td>".$row->MESTO."</td><td>".$row->POPIS."</td><td>".$row->TELEFON."</td><td><a href=\"uprav.php?rowid=".$row->ROWID."\">Modify</a>  <a href=\"zmaz.php?rowid=".$row->ROWID."\">Delete</td>";
+    echo"<tr><td>".$row['MENO']."</td><td>".$row['EMAIL']."</td><td>".$row['MESTO']."</td><td>".$row['POPIS']."</td><td>".$row['TELEFON']."</td><td><a href=\"uprav.php?rowid=".$row['ROWID']."\">Modify</a>  <a href=\"zmaz.php?rowid=".$row['ROWID']."\">Delete</td>";
   }
 }
 echo "</table>";

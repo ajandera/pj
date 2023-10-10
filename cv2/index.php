@@ -56,5 +56,5 @@ if (!isset($choice)) {
   } else {
     generateHTMLHeader("Directory","List of addresses");
   }
-  generateHTMLZoznam();
+  generateHTMLZoznam($pdo);
 }

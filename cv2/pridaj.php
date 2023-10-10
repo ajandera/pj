@@ -24,14 +24,12 @@ if(!$cn || !$mail || !$locality || !$description || !$number) {
 }
 
 try {
-  $stmt = $pdo->prepare("INSERT INTO ?(MENO, EMAIL, MESTO, POPIS,TELEFON) VALUES(?,?,?,?,?)");
-  $stmt->bindParam(1, $tableName);
-  $stmt->bindParam(2, $cn);
-  $stmt->bindParam(3, $mail);
-  $stmt->bindParam(4, $locality);
-  $stmt->bindParam(5, $description);
-  $stmt->bindParam(6, $number);
-  $stmt->execute();
+  $stmt = $pdo->prepare("INSERT INTO address (MENO, EMAIL, MESTO, POPIS, TELEFON) VALUES(?,?,?,?,?)");
+  $stmt->bindParam(1, $cn);
+  $stmt->bindParam(2, $mail);
+  $stmt->bindParam(3, $locality);
+  $stmt->bindParam(4, $description);
+  $stmt->bindParam(5, $number);
 } catch (PDOException $e) {
   displayErrMsg("Error: " . $e->getMessage());
   exit();
@@ -39,6 +37,7 @@ try {
 
 if ($_SESSION['lan']=="sk") {
   generateHTMLHeader("Pridavanie zoznamu","Zoznam bol pridany uspesne");
+  returnToMain();
 } else {
   generateHTMLHeader("Adding entry","Entry was added successfuly");
   returnToMain();

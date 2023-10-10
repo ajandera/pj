@@ -11,7 +11,7 @@ $number = $_REQUEST["number"];
 
 if(!$cn && !$mail && !$locality && !$description && !$number) {
   if ($_SESSION[lan] == "sk") {
-    displayErrMsg("Chyba: Aspon jedno vyhyadlvacie kriterium musi byt zadane"); returnToMain();
+    displayErrMsg("Chyba: Aspon jedno vyhladavacie kriterium musi byt zadane"); returnToMain();
   } else {
     displayErrMsg("Error: At least one of fields must be filled"); returnToMain();
   }
@@ -54,7 +54,7 @@ try {
   exit();
 }
 ?>
-<h3 align="center"> <?php if ($_SESSION['lan']=="sk") { generateHTMLheader("V�sledky vyh�ad�vania",""); } else { generateHTMLheader("Results",""); }?></h3>
+<h3 align="center"> <?php if ($_SESSION['lan']=="sk") { generateHTMLheader("Vysledky vyhladavania",""); } else { generateHTMLheader("Results",""); }?></h3>
 
 <table class="tab2">
 <?php
