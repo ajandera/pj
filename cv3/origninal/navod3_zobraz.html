@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>
+Cv.3 - zobraz prava
+</title>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../navody.css">
+</head>
+<body bgcolor=#285577>
+<h1>zdrojovy kod</h1>
+<h1>ziskanie informacii o subore</h1>
+	<font color="black" face="sans-serif" size="4"><br><br><br>
+
+if ( !<a href="http://php.mirror.camelnetwork.com/manual/sk/function.isset.php" target="_blank">isset</a>(<a href="http://sk.php.net/manual/sk/reserved.variables.php#reserved.variables.get" target="_blank">$_GET</a>['subor']) ) <a href="http://php.mirror.camelnetwork.com/manual/sk/function.exit.php" target="_blank">exit ()</a>;<br>
+<a href="http://ccdec.tuke.sk/ti/Php_manual/function.echo.html" target="_blank">echo</a> "<_?xml version=\"1.0\" encoding=\"iso-8859-2\"?>";<br>
+<a href="http://php.mirror.camelnetwork.com/manual/sk/function.clearstatcache.php">clearstatcache()</a>;<br>
+$vlastnik=<a href="http://php.mirror.camelnetwork.com/manual/sk/function.posix-getpwuid.php">posix_getpwuid</a>(<a href="http://php.mirror.camelnetwork.com/manual/sk/function.fileowner.php">fileowner</a>(<a href="http://sk.php.net/manual/sk/reserved.variables.php#reserved.variables.get" target="_blank">$_GET</a>['subor']));<br><br>
+
+------------------------------------<br><br>
+script - info o subore<br><br>
+
+------------------------------------<br><br>
+	&lt script type="text/javascript"><br>
+		/* &lt ![CDATA[ */<br>
+	function otvorOdkaz(url)<br>
+	{<br>
+    self.document.location.href=url;<br>
+  }<br>
+	/* ]]> */<br>
+	&lt /script><br>
+	&lt form action='./zmen.php' method='get'><br>
+		SÚBOR: "   &lt ?php echo <a href="http://sk.php.net/manual/sk/reserved.variables.php#reserved.variables.get" target="_blank">$_GET</a>['subor']; ?>"<br />
+		VLASTNÍK: "   &lt ?php echo $vlastnik['name']; ?>"<br />
+		PRÁVA: &lt input type='text' name='atribut' value='<?php echo substr(sprintf('%o', fileperms($_GET['subor'])), -4); ?>/>
+		<input type='text' name='atribut' value='<?php echo substr(sprintf('%o', fileperms($_GET['subor'])), -4); ?>'%o', fileperms($_GET['subor'])), -4); ?>' size='6' /><br>
+		&lt input type='submit' name='btnZmen' value='Zmeò' />
+		<input type='submit' name='btnZmen' value='Zmeò' /><br>
+		&lt input type='hidden' name='subor' value='  &lt ?php echo <a href="http://sk.php.net/manual/sk/reserved.variables.php#reserved.variables.get" target="_blank">$_GET</a>['subor']; ?>' /><br>
+	&lt /form><br>
+	<p>
+	&lt button type='button' onclick="otvorOdkaz('main.php')">Spat  &lt /button>
+	<button type='button' onclick="otvorOdkaz('main.php')">Spat</button><br>
+	
+
+
+-------------------------------------------
+</body>
+</html>

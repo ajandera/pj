@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>
+Cv.3 - vytvor subor test.txt
+</title>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../navody.css">
+</head>
+<body>
+
+<h2>zdrojovı kód - vytvor súbor</h2>
+
+<i>Pri vytváraní súboru test.txt treba dba na správne prisúdenie práv.<br>A pre danı adresár, v ktorom sa vytvára test.txt  musia by povolené práva pre zápis v tvare (0777)<br>
+Pre takto vytvorenı súbor test.txt je moné ¾ubovo¾ne meni prístupové práva.</i><br><br>
+
+if (!
+<a href="http://ccdec.tuke.sk/ti/Php_manual/function.file-exists.html" target="_blank">file_exists</a>('test.txt,'w'))<br>
+{<br>
+	$subor=
+<a href="http://php.mirror.camelnetwork.com/manual/sk/function.fopen.php" target="_blank">fopen</a>('test.txt,'w');<br>
+<a href="http://php.mirror.camelnetwork.com/manual/sk/function.fwrite.php" target="_blank">fwrite</a> ($subor,'test');<br>
+<a href="http://php.mirror.camelnetwork.com/manual/sk/function.fclose.php" target="_blank">fclose</a> ($subor);<br>
+<a href="http://php.mirror.camelnetwork.com/manual/sk/function.chmod.php" target="_blank">chmod</a> ('test.txt',0777);<br>
+<a href="http://ccdec.tuke.sk/ti/Php_manual/function.echo.html" target="_blank">echo</a> "Subor uspesne vytvoreny";<br>
+}<br>
+else
+<a href="http://ccdec.tuke.sk/ti/Php_manual/function.echo.html" target="_blank">echo</a> "Subor uz je vytvoreny";<br>
+
+
+</body>
+</html>
