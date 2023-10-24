@@ -28,13 +28,44 @@ if (!preg_match($pattern, $mail)) {
     exit();
 }
 
+// validate phone number
+
+// simple validation
+//if (strlen($number) !== 13 && substr($number, 0,3) !== "+421") {
+//  displayErrMsg("Your inserted phone is not in valid format. Begin with +421 ...");
+//  returnToMain();
+//  exit();
+//}
+
+
+// better validation
+$patternNumber = '/^(\+421|00421|0)(\s?\d{3}\s?\d{3}\s?\d{3}|\d{2}\s?\d{2}\s?\d{2}\s?\d{2})$/';
+
+if (preg_match($patternNumber, $number)) {
+    displayErrMsg("Your inserted phone is not in valid format. Begin with +421 ...");
+    returnToMain();
+    exit();
+}
+
+
+// divide name to name and surname
+$preName = preg_split('/\s+/', $cn);
+$name = $preName[0];
+$surnname = $preName[1];
+
+// other option
+// $preName = explode(' ', $cn);
+// $name = $preName[0];
+// $surnname = $preName[1];
+
 try {
-  $stmt = $pdo->prepare("INSERT INTO address (MENO, EMAIL, MESTO, POPIS, TELEFON) VALUES(?,?,?,?,?)");
-  $stmt->bindParam(1, $cn);
-  $stmt->bindParam(2, $mail);
-  $stmt->bindParam(3, $locality);
-  $stmt->bindParam(4, $description);
-  $stmt->bindParam(5, $number);
+  $stmt = $pdo->prepare("INSERT INTO address (MENO, PRIEZVISKO, EMAIL, MESTO, POPIS, TELEFON) VALUES(?,?,?,?,?,?)");
+  $stmt->bindParam(1, $name);
+  $stmt->bindParam(2, $surname);
+  $stmt->bindParam(3, $mail);
+  $stmt->bindParam(4, $locality);
+  $stmt->bindParam(5, $description);
+  $stmt->bindParam(6, $number);
   $stmt->execute();
 } catch (PDOException $e) {
   displayErrMsg("Error: " . $e->getMessage());
