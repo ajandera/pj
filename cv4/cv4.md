@@ -1,6 +1,11 @@
 # Cv 4
 
-Premenujeme príklad a) z Cvičenia 2 na vstup.php. Doplníme kontrolu a spracovanie vstupných údajov formulára takto:
+Copy cv2 content without md and sq1l files.
+
+Add server side validation to the pridaj.php:
+
+Email: add regular expression to check if email has correct format.
+Phone: Check if number is in international type and has all numbers.
 
 Meno - všetky medzery v mene nahradíme podčiarknikom.
 Email - login musí byť najmenej 4 znaky, len pre doménu sk, @.

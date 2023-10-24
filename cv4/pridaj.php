@@ -23,7 +23,7 @@ if(!$cn || !$mail || !$locality || !$description || !$number) {
 // check email format
 $pattern = '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/';
 if (!preg_match($pattern, $mail)) {
-    displayErrMsg("Ypur inserted email is not in valid format.");
+    displayErrMsg("Your inserted email is not in valid format.");
     returnToMain();
     exit();
 }
