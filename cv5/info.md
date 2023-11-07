@@ -4,7 +4,7 @@ Zostavte XML súbor pokus.xml, ktorý je tvorený položkami predmet, skúšajú
 
 Podľa príkladu test.php (z prednášky) zostavte skript pokus.php, pomocou ktorého preverte a zobrazte vstupný súbor pokus.xml. Súbor pokus.xml pripravte najprv v správnom tvare a potom vyskúšajte chyby na rôznych miestach v otváracích i zatváracích elementoch. 
 
-### riesenie
+### Riesenie
 
 Samozřejmě, zde je PHP skript "pokus.php", který zkontroluje a zobrazí obsah vstupního XML souboru "pokus.xml". Nejprve předpokládejme, že váš XML soubor je ve stejném adresáři jako "pokus.php":
 
@@ -146,17 +146,18 @@ Upravte skript pokus.php na skript pokus1.php tak, aby bol názov vstupného sú
 
 ### riesenie 
 
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Načtení XML souboru</title>
-</head>
-<body>
-  <h1>Načtení XML souboru</h1>
-  <form action="pokus1.php" method="post" enctype="multipart/form-data">
-    Vyberte XML soubor: <input type="file" name="xml_file" accept=".xml"><br>
-    <input type="submit" value="Odeslat">
-  </form>
+```php
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title>Načtení XML souboru</title>
+  </head>
+  <body>
+    <h1>Načtení XML souboru</h1>
+    <form action="pokus1.php" method="post" enctype="multipart/form-data">
+      Vyberte XML soubor: <input type="file" name="xml_file" accept=".xml"><br>
+      <input type="submit" value="Odeslat">
+    </form>
 
   <?php
   if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_FILES["xml_file"])) {
@@ -180,3 +181,4 @@ Upravte skript pokus.php na skript pokus1.php tak, aby bol názov vstupného sú
   ?>
 </body>
 </html>
+```

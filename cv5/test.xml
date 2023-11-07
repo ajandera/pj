@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<knihy>
+<kniha>
+  <titul>Principia Mathematica</titul>
+  <autori>
+    <autor>Isaac Newton</autor>
+  </autori>
+  <recenzenti>
+    <recenzent>John Smith</recenzent>
+    <recenzent>Mary Johnson</recenzent>
+  </recenzenti>
+  <vydavatel>Cambridge University Press</vydavatel>
+  <rok_vydani>1687</rok_vydani>
+  <ISBN>978-0521869597</ISBN>
+  <pocet_stran>992</pocet_stran>
+</kniha>
+
+<kniha>
+  <titul>1984</titul>
+  <autori>
+    <autor>George Orwell</autor>
+  </autori>
+  <recenzenti>
+    <recenzent>David Brown</recenzent>
+  </recenzenti>
+  <vydavatel>Penguin Books</vydavatel>
+  <rok_vydani>1949</rok_vydani>
+  <ISBN>978-0141036144</ISBN>
+  <pocet_stran>328</pocet_stran>
+</kniha>
+
+<kniha>
+  <titul>Válka světů</titul>
+  <autori>
+    <autor>H.G. Wells</autor>
+  </autori>
+  <recenzenti>
+    <recenzent>Lisa Green</recenzent>
+    <recenzent>Michael White</recenzent>
+  </recenzenti>
+  <vydavatel>William Heinemann</vydavatel>
+  <rok_vydani>1898</rok_vydani>
+  <ISBN>978-1948138051</ISBN>
+  <pocet_stran>221</pocet_stran>
+</kniha>
+</knihy>
