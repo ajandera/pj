@@ -25,9 +25,13 @@
         $xml = simplexml_load_file($file_name);
 
         // show simple element
+        echo "<p>Zoznam vydavatelov:</p>";
+
         foreach ($xml as $book) {
-            echo "<br>" .  $book->vydavatel . "<br>";
+            echo $book->vydavatel . "<br>";
         }
+
+        echo "<p>Raw xml:</p>";
 
         echo "<pre>" . htmlspecialchars($xml->asXML()) . "</pre>";
       } else {
