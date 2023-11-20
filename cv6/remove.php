@@ -8,7 +8,7 @@
     <form action="remove.php" method="post">
       <label>Titul</label><br>
       <input type="text" name="title" required><br>
-      <input type="submit" value="Pridat">
+      <input type="submit" value="Zmazat">
     </form>
 
   <?php

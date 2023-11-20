@@ -1,0 +1,105 @@
+body
+	{
+			color: #000000;
+			background-color: rgb(192,192,192);
+	}
+
+h1
+	{
+			text-align:center;
+	}
+
+li
+	{
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			font-size: 13px;
+			font-style: normal;
+			font-weight: normal;
+			color: blue;
+	}
+
+table
+	{
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			font-size: 16px;
+			font-style: normal;
+			font-weight:bolder;
+			margin-right: 5%;
+			margin-left: 5%;
+			color: #000000;
+			background-color: #dcdcdc;
+			border-style: solid;
+			border-color:#000000;
+			text-align:center;
+			width:90%;
+			border-right-width: thin;
+			border-bottom-width: thin;border:0;
+	}
+
+.tab2
+	{
+			margin-right: 2%;
+			margin-left: 2%;
+			border:1px;
+			font-size: 11px;
+			font-style: normal;
+			font-weight:normal;
+			border-color:black;
+			border-style: solid;
+			color: black;
+			background-color:rgb(192,192,192);
+	}
+
+.tab2 th
+	{
+			border-style:solid;
+			border:1px;
+			border-color:black;
+			border-style:solid;
+			color: black;
+			background-color:rgb(172,172,172);
+	}
+
+.tab2 td
+	{
+			border:1px;
+			border-color:black;
+			border-style: solid;
+			color: black;
+			background-color:rgb(192,192,192);
+	}
+
+.tab3
+	{
+			margin-right: 2%;
+			margin-left: 2%;
+			border:0;
+			font-size: 11px;
+			font-style: normal;
+			font-weight:normal;
+			border-color:black;
+			border-style: solid;
+			color: black;
+			background-color:rgb(192,192,192);
+	}
+
+.inp1
+	{
+			margin-left: 5%
+	}
+
+.inp2
+	{
+			margin-right: 5%
+	}
+
+.errmsg
+	{
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			font-size: 19px;
+			font-style: normal;
+			font-weight: normal;
+			color: red;
+			background-color: rgb(222,222,222);
+			text-align:center;
+	}
