@@ -24,7 +24,6 @@
         <a href="database.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Database</a>
         <a href="form.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Form</a>
         <a href="select.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Update</a>
-        <a href="delete.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Delete</a>
     </div>
 
     <!-- Navbar on small screens -->
@@ -32,7 +31,6 @@
         <a href="database.php" class="w3-bar-item w3-button w3-padding-large">Database</a>
         <a href="form.html" class="w3-bar-item w3-button w3-padding-large">Form</a>
         <a href="select.php" class="w3-bar-item w3-button w3-padding-large">Update</a>
-        <a href="delete.php" class="w3-bar-item w3-button w3-padding-large">Delete</a>
     </div>
 </div>
 

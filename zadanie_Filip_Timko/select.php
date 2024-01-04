@@ -24,7 +24,6 @@
         <a href="database.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Database</a>
         <a href="form.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Form</a>
         <a href="select.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Update</a>
-        <a href="delete.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Delete</a>
     </div>
 
     <!-- Navbar on small screens -->
@@ -32,7 +31,6 @@
         <a href="database.php" class="w3-bar-item w3-button w3-padding-large">Database</a>
         <a href="form.html" class="w3-bar-item w3-button w3-padding-large">Form</a>
         <a href="select.php" class="w3-bar-item w3-button w3-padding-large">Update</a>
-        <a href="delete.php" class="w3-bar-item w3-button w3-padding-large">Delete</a>
     </div>
 </div>
 
@@ -60,11 +58,11 @@ try {
 <table class="tab2">
     <?php
 
-        echo "<tr><td>Name</td><td>Descripton</td><td>Supplier</td><td>Price</td><td>Use</td><td>Change</td></tr>";
+        echo "<tr><td>Name</td><td>Descripton</td><td>Supplier</td><td>Price</td><td>Use</td><td>Modify/Erase</td></tr>";
 
 
     foreach ($data as $row) {
-            echo"<tr><td>".$row['nazov']."</td><td>".$row['popis']."</td><td>".$row['dnazov']."</td><td>".$row['cena']."</td><td>".$row['unazov']."</td><td><a href=\"update.php?id=".$row['id']."\">Change</a></td>";
+            echo"<tr><td>".$row['nazov']."</td><td>".$row['popis']."</td><td>".$row['dnazov']."</td><td>".$row['cena']."</td><td>".$row['unazov']."</td><td><a href=\"update.php?id=".$row['id']."\">Change</a><a href=\"delete.php?id=".$row['id']."\">Delete</td>";
 
     }
     echo "</table>";

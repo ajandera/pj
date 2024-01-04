@@ -24,7 +24,6 @@
         <a href="database.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Database</a>
         <a href="form.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Form</a>
         <a href="select.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Update</a>
-        <a href="delete.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Delete</a>
     </div>
 
     <!-- Navbar on small screens -->
@@ -32,7 +31,6 @@
         <a href="database.php" class="w3-bar-item w3-button w3-padding-large">Database</a>
         <a href="form.html" class="w3-bar-item w3-button w3-padding-large">Form</a>
         <a href="select.php" class="w3-bar-item w3-button w3-padding-large">Update</a>
-        <a href="delete.php" class="w3-bar-item w3-button w3-padding-large">Delete</a>
     </div>
 </div>
 
@@ -47,12 +45,16 @@
         <div class="w3-twothird">
 <?php
 require "conn.php";
-try{
-    $sql = "DELETE FROM diel";
-    $pdo->exec($sql);
-    echo "Bad CHOICE the contents of the tables with the part and their amount were deleted :(";
-}  catch(PDOException $e) {
-    echo $sql . "<br>" . $e->getMessage();
+$id = $_REQUEST["id"];
+
+try {
+    $stmt = $pdo->prepare("DELETE FROM diel WHERE id = ?");
+    $stmt->bindParam(1, $id);
+    $stmt->execute();
+    echo "Entry was deleted successfuly";
+} catch (PDOException $e) {
+    displayErrMsg("Error: " . $e->getMessage());
+    exit();
 }
 
 ?>
