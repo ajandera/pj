@@ -66,7 +66,7 @@ if(!$nazov || !$id_interpret || !$id_album || !$id_zaner) {
 }
 
 try {
-    $stmt = $pdo->prepare("INSERT INTO skladba (nazov, id_interpret, id_album, id_zaner) VALUES(?,?,?,?,?)");
+    $stmt = $pdo->prepare("INSERT INTO skladba (nazov, id_interpret, id_album, id_zaner) VALUES(?,?,?,?)");
     $stmt->bindParam(1, $nazov);
     $stmt->bindParam(2, $id_interpret);
     $stmt->bindParam(3, $id_album);

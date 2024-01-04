@@ -1,4 +1,4 @@
-global$pdo; <!DOCTYPE html>
+global$pdo; global$pdo; global$pdo; <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>form</title>
@@ -35,7 +35,7 @@ global$pdo; <!DOCTYPE html>
         <a href="delete.php" class="w3-bar-item w3-button w3-padding-large">Delete</a>
     </div>
 </div>
-
++
 <!-- Header -->
 <header class="w3-container w3-red w3-center" style="padding:128px 16px">
  <h1 class="w3-margin w3-jumbo">INSERT</h1>
@@ -43,8 +43,8 @@ global$pdo; <!DOCTYPE html>
 
 <!-- First Grid -->
 <div class="w3-row-padding w3-padding-64 w3-container">
- <div class="w3-content">
-  <div class="w3-twothird">
+    <div class="w3-content">
+        <div class="w3-twothird">
 <?php
  require "conn.php";
 
@@ -113,7 +113,7 @@ global$pdo; <!DOCTYPE html>
  }
  $pdo = null;
 ?>
-  </div>
+        </div>
 
   <div class="w3-third w3-center">
       <i class="fa fa-headphones" style="font-size:400px;color:red;"></i>
