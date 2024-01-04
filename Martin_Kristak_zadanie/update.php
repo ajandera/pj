@@ -24,21 +24,21 @@
         <a href="database.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Tabulky</a>
         <a href="form.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Pridaj skladbu</a>
         <a href="select.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Skladby</a>
-        <a href="delete.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Delete</a>
+        <a href="update.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Uprav</a>
     </div>
 
     <!-- Navbar on small screens -->
     <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-        <a href="database.php" class="w3-bar-item w3-button w3-padding-large">Database</a>
-        <a href="form.html" class="w3-bar-item w3-button w3-padding-large">Form</a>
-        <a href="select.php" class="w3-bar-item w3-button w3-padding-large">Select</a>
+        <a href="database.php" class="w3-bar-item w3-button w3-padding-large">Tabulky</a>
+        <a href="form.html" class="w3-bar-item w3-button w3-padding-large">Pridaj skladbu</a>
+        <a href="select.php" class="w3-bar-item w3-button w3-padding-large">Skladby</a>
         <a href="delete.php" class="w3-bar-item w3-button w3-padding-large">Delete</a>
     </div>
 </div>
 
 <!-- Header -->
 <header class="w3-container w3-red w3-center" style="padding:128px 16px">
-    <h1 class="w3-margin w3-jumbo">UPDATE</h1>
+    <h1 class="w3-margin w3-jumbo">Uprava skladby</h1>
 </header>
 
 <!-- First Grid -->
@@ -48,41 +48,64 @@
 <?php
 require "conn.php";
 
-$id = $_REQUEST["id"];
-echo "For ID of the part use this number: $id";
+try {
+    $stmt = $pdo->prepare("SELECT skladba.id, skladba.nazov, interpret.meno_interpreta, album.nazov_album, zaner.nazov_zaner FROM skladba, interpret, album, zaner WHERE skladba.id_interpret = interpret.id_interpret AND skladba.id_album = album.id_album AND skladba.id_zaner = zaner.id_zaner");
+    $stmt->bindParam(1, $tableName);
+    $stmt->execute();
+    $data = $stmt->fetchAll();
+} catch (PDOException $e) {
+    displayErrMsg("Error: " . $e->getMessage());
+    exit();
+}
 ?>
-<form action="uprav.php" method="post">
-    <label for="id">Part ID:</label>
+            <table class="tab2">
+                <?php
+
+                echo "<tr><td>ID skladby</td><td>Nazov skladby</td><td>Nazov interpreta</td><td>Album</td><td>Zaner</td></td><td>Upraviť/Vymazať</td></tr>";
+
+
+                foreach ($data as $row) {
+                    echo"<tr><td>".$row['id']."</td><td>".$row['nazov']."</td><td>".$row['meno_interpreta']."</td><td>".$row['nazov_album']."</td><td>".$row['nazov_zaner']."</td><td><a href=\"update.php?id=".$row['id']."\">Change</a><a href=\"delete.php?id=".$row['id']."\">/Delete</td>";
+
+                }
+                echo "</table>";
+
+$id = $_REQUEST["id"];
+echo "ID skladby: $id";
+?>
+<form action="uprav.php" method="post"><br>
+    <label for="id">Skladba ID:</label>
     <input type="number" id="id" name="id" min="1"><br>
 
-    <label for="nazov">Part name:</label>
+    <label for="nazov">Nazov skladby:</label>
     <input type="text" id="nazov" name="nazov"><br>
 
-    <label for="popis">Description:</label>
-    <input type="text" id="popis" name="popis"><br>
+    <p>Interpret:</p>
+    <input type="radio" id="elan" name="id_interpret" value=1>
+    <label for="elan">Elán</label><br>
+    <input type="radio" id="ac/dc" name="id_interpret" value=2>
+    <label for="ac/dc">AC/DC</label><br>
+    <input type="radio" id="avicii" name="id_interpret" value=3>
+    <label for="avicii">Avicii</label><br>
 
-    <label for="cena">Price:</label>
-    <input type="number" id="cena" name="cena" min="1" max="10000"><br>
 
-    <p>Supplier:</p>
-    <input type="radio" id="festo" name="dodavatel" value=1>
-    <label for="festo">Festo</label><br>
-    <input type="radio" id="megabelt" name="dodavatel" value=2>
-    <label for="megabelt">MegaBelt</label><br>
-    <input type="radio" id="siemens" name="dodavatel" value=3>
-    <label for="siemens">Siemens</label><br>
-    <input type="radio" id="omron" name="dodavatel" value=4>
-    <label for="omron">Omron</label><br>
+    <p>Album:</p>
+    <input type="radio" id="rabaka" name="id_album" value=1>
+    <label for="rabaka">Rabaka</label><br>
+    <input type="radio" id="rock or bust" name="id_album" value=2>
+    <label for="rock or bust">Rock or Bust</label><br>
+    <input type="radio" id="highway to hell" name="id_album" value=3>
+    <label for="highway to hell">Highway to Hell</label><br>
+    <input type="radio" id="stories" name="id_album" value=4>
+    <label for="stories">Stories</label><br>
 
-    <p>Type of use:</p>
-    <input type="radio" id="elektricke" name="urcenie" value=1>
-    <label for="elektricke">Electrical</label><br>
-    <input type="radio" id="mechanicke" name="urcenie" value=2>
-    <label for="mechanicke">Mechanical</label><br>
-    <input type="radio" id="pneumaticke" name="urcenie" value=3>
-    <label for="pneumaticke">Pneumatic</label><br>
-    <input type="radio" id="hydraulicke" name="urcenie" value=4>
-    <label for="hydraulicke">Hydraulic</label><br>
+    <p>Zaner:</p>
+    <input type="radio" id="rock" name="id_zaner" value=1>
+    <label for="rock">Rock</label><br>
+    <input type="radio" id="pop" name="id_zaner" value=2>
+    <label for="pop">Pop</label><br>
+    <input type="radio" id="elektronicka hudba" name="id_zaner" value=3>
+    <label for="elektronicka hudba">Elektronicka hudba</label><br>
 
 
     <input type="submit">
@@ -93,7 +116,7 @@ echo "For ID of the part use this number: $id";
 </div>
 
 <div class="w3-third w3-center">
-    <i class="fa fa-anchor w3-padding-64 w3-text-red"></i>
+    <i class="fa fa-headphones" style="font-size:400px;color:red;"></i>
 </div>
 </div>
 </div>

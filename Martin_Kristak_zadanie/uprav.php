@@ -21,17 +21,17 @@ global$pdo; <!DOCTYPE html>
     <div class="w3-bar w3-red w3-card w3-left-align w3-large">
         <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
         <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
-        <a href="database.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Database</a>
-        <a href="form.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Form</a>
-        <a href="select.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Select</a>
-        <a href="delete.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Delete</a>
+        <a href="database.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Tabulky</a>
+        <a href="form.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Pridaj skladbu</a>
+        <a href="select.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Skladby</a>
+        <a href="update.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Uprav</a>
     </div>
 
     <!-- Navbar on small screens -->
     <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-        <a href="database.php" class="w3-bar-item w3-button w3-padding-large">Database</a>
-        <a href="form.html" class="w3-bar-item w3-button w3-padding-large">Form</a>
-        <a href="select.php" class="w3-bar-item w3-button w3-padding-large">Select</a>
+        <a href="database.php" class="w3-bar-item w3-button w3-padding-large">Tabulky</a>
+        <a href="form.html" class="w3-bar-item w3-button w3-padding-large">Pridaj skladbu</a>
+        <a href="select.php" class="w3-bar-item w3-button w3-padding-large">Skladby</a>
         <a href="delete.php" class="w3-bar-item w3-button w3-padding-large">Delete</a>
     </div>
 </div>
@@ -48,41 +48,36 @@ global$pdo; <!DOCTYPE html>
 <?php
 require "conn.php";
 
+
 $id = $_POST['id'];
 $nazov = $_POST['nazov'];
-$popis = $_POST['popis'];
-$cena = $_POST['cena'];
-$dodavatel = $_POST['dodavatel'];
-$urcenie = $_POST['urcenie'];
+$id_interpret = $_POST['id_interpret'];
+$id_album = $_POST['id_album'];
+$id_zaner = $_POST['id_zaner'];
 
 
+echo "Pridali ste novú skladbu: <br>";
+echo "Nazov skladby: $nazov <br>";
+echo "Meno interpreta: $id_interpret <br>";
+echo "Album: $id_album <br>";
+echo "Zaner: $id_zaner <br>";
 
-echo "You add <br>";
-echo "$id<br><br>";
-echo "Name: $nazov <br>";
-echo "Description: $popis <br>";
-echo "Price: $cena <br>";
-echo "Supplier: $dodavatel <br>";
-echo "Type of use: $urcenie <br>";
-
-
-if(!$nazov || !$popis || !$cena || !$dodavatel || !$urcenie) {
+if(!$nazov || !$id_interpret || !$id_album || !$id_zaner) {
     echo "Zoznam nebol pridany";
     exit();
 }
 
 try {
-    $stmt = $pdo->prepare("UPDATE diel SET nazov = ?, popis = ?, id_dodavatel = ?, cena = ?, id_urcenie = ? where id = ?");
+    $stmt = $pdo->prepare("UPDATE skladba SET nazov = ?, id_interpret = ?, id_album = ?, id_zaner = ? WHERE id = ?");
     $stmt->bindParam(1, $nazov);
-    $stmt->bindParam(2, $popis);
-    $stmt->bindParam(3, $dodavatel);
-    $stmt->bindParam(4, $cena);
-    $stmt->bindParam(5, $urcenie);
-    $stmt->bindParam(6, $id);
+    $stmt->bindParam(2, $id_interpret);
+    $stmt->bindParam(3, $id_album);
+    $stmt->bindParam(4, $id_zaner);
+    $stmt->bindParam(5, $id);
     $stmt->execute();
 
     $last_id = $pdo->lastInsertId();
-    echo "New record created successfully.";
+    echo "Uprava uspešne vykonaná.";
     echo "<br>";
 } catch(PDOException $e) {
     echo $stmt . "<br>" . $e->getMessage();

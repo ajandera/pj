@@ -24,14 +24,14 @@ global$pdo; global$pdo; <!DOCTYPE html>
         <a href="database.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Tabulky</a>
         <a href="form.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Pridaj skladbu</a>
         <a href="select.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Skladby</a>
-        <a href="delete.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Delete</a>
+        <a href="update.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Uprav</a>
     </div>
 
     <!-- Navbar on small screens -->
     <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-        <a href="database.php" class="w3-bar-item w3-button w3-padding-large">Database</a>
-        <a href="form.html" class="w3-bar-item w3-button w3-padding-large">Form</a>
-        <a href="select.php" class="w3-bar-item w3-button w3-padding-large">Select</a>
+        <a href="database.php" class="w3-bar-item w3-button w3-padding-large">Tabulky</a>
+        <a href="form.html" class="w3-bar-item w3-button w3-padding-large">Pridaj skladbu</a>
+        <a href="select.php" class="w3-bar-item w3-button w3-padding-large">Skladby</a>
         <a href="delete.php" class="w3-bar-item w3-button w3-padding-large">Delete</a>
     </div>
 </div>
@@ -48,7 +48,7 @@ global$pdo; global$pdo; <!DOCTYPE html>
 <?php
 require "conn.php";
 try {
-    $stmt = $pdo->prepare("SELECT * FROM skladba");
+    $stmt = $pdo->prepare("SELECT skladba.id, skladba.nazov, interpret.meno_interpreta, album.nazov_album, zaner.nazov_zaner FROM skladba, interpret, album, zaner WHERE skladba.id_interpret = interpret.id_interpret AND skladba.id_album = album.id_album AND skladba.id_zaner = zaner.id_zaner");
     $stmt->bindParam(1, $tableName);
     $stmt->execute();
     $data = $stmt->fetchAll();
@@ -60,11 +60,11 @@ try {
 <table class="tab2">
     <?php
 
-        echo "<tr><td>Nazov skladby</td><td>Nazov interpreta</td><td>Album</td><td>Zaner</td>";
+        echo "<tr><td>ID skladby</td><td>Nazov skladby</td><td>Nazov interpreta</td><td>Album</td><td>Zaner</td></td><td>Upraviť/Vymazať</td></tr>";
 
 
     foreach ($data as $row) {
-            echo"<tr><td>".$row['nazov']."</td><td>".$row['id_interpret']."</td><td>".$row['id_album']."</td><td>".$row['id_zaner']."</td><td>";
+            echo"<tr><td>".$row['id']."</td><td>".$row['nazov']."</td><td>".$row['meno_interpreta']."</td><td>".$row['nazov_album']."</td><td>".$row['nazov_zaner']."</td><td><a href=\"update.php?id=".$row['id']."\">Change</a><a href=\"delete.php?id=".$row['id']."\">/Delete</td>";
 
     }
     echo "</table>";
