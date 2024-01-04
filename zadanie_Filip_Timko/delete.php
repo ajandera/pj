@@ -48,12 +48,11 @@
 <?php
 require "conn.php";
 try{
-    $truncate_table_query = "TRUNCATE TABLE diel, stav";
-    $stmt = $pdo ->prepare($truncate_table_query);
-    $stmt->execute();
+    $sql = "DELETE FROM diel";
+    $pdo->exec($sql);
     echo "Bad CHOICE the contents of the tables with the part and their amount were deleted :(";
 }  catch(PDOException $e) {
-    echo $stmt . "<br>" . $e->getMessage();
+    echo $sql . "<br>" . $e->getMessage();
 }
 
 ?>
