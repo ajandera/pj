@@ -64,7 +64,7 @@ try {
 
 
     foreach ($data as $row) {
-            echo"<tr><td>".$row['Nazov skladby']."</td><td>".$row['Nazov interpreta']."</td><td>".$row['Album']."</td><td>".$row['Zaner']."</td><td>";
+            echo"<tr><td>".$row['Nazov_skladby']."</td><td>".$row['Nazov interpreta']."</td><td>".$row['Album']."</td><td>".$row['Zaner']."</td><td>";
 
     }
     echo "</table>";
