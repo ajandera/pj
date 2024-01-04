@@ -38,7 +38,7 @@ global$pdo; <!DOCTYPE html>
 
 <!-- Header -->
 <header class="w3-container w3-red w3-center" style="padding:128px 16px">
- <h1 class="w3-margin w3-jumbo">Database first INSERT</h1>
+ <h1 class="w3-margin w3-jumbo">INSERT</h1>
 </header>
 
 <!-- First Grid -->

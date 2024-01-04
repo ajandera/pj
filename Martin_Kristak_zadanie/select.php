@@ -1,4 +1,4 @@
-global$pdo; <!DOCTYPE html>
+global$pdo; global$pdo; <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>form</title>

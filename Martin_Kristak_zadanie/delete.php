@@ -1,4 +1,4 @@
-global$pdo; <!DOCTYPE html>
+global$pdo; global$pdo; global$pdo; global$pdo; global$pdo; <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>form</title>
@@ -38,25 +38,28 @@ global$pdo; <!DOCTYPE html>
 
 <!-- Header -->
 <header class="w3-container w3-red w3-center" style="padding:128px 16px">
-    <h1 class="w3-margin w3-jumbo">Werehouse stock DELETED</h1>
+    <h1 class="w3-margin w3-jumbo">Vymazanie všetkých záznamov</h1>
 </header>
 
 <!-- First Grid -->
 <div class="w3-row-padding w3-padding-64 w3-container">
     <div class="w3-content">
         <div class="w3-twothird">
-<?php
-require "conn.php";
-try{
-    $truncate_table_query = "TRUNCATE TABLE diel, stav";
-    $stmt = $pdo ->prepare($truncate_table_query);
-    $stmt->execute();
-    echo "Bad CHOICE the contents of the tables with the part and their amount were deleted :(";
-}  catch(PDOException $e) {
-    echo $stmt . "<br>" . $e->getMessage();
-}
+            <?php
+            require "conn.php";
+            $id = $_REQUEST["id"];
 
-?>
+            try {
+                $stmt = $pdo->prepare("DELETE * FROM skladba");
+                $stmt->bindParam(1, $id);
+                $stmt->execute();
+                echo "Table was deleted successfuly";
+            } catch (PDOException $e) {
+                displayErrMsg("Error: " . $e->getMessage());
+                exit();
+            }
+
+            ?>
 </div>
 
 <div class="w3-third w3-center">
