@@ -48,7 +48,7 @@
 <?php
 require "conn.php";
 try {
-    $stmt = $pdo->prepare("SELECT diel.id, diel.nazov, diel.popis, dodavatel.dnazov, diel.cena, urcenie.unazov FROM diel , dodavatel , urcenie  WHERE diel.id_dodavatel = dodavatel.id_dodavatel AND diel.id_urcenie = urcenie.id_urcenie");
+    $stmt = $pdo->prepare("SELECT * FROM skladba");
     $stmt->bindParam(1, $tableName);
     $stmt->execute();
     $data = $stmt->fetchAll();
@@ -60,11 +60,11 @@ try {
 <table class="tab2">
     <?php
 
-        echo "<tr><td>Name</td><td>Descripton</td><td>Supplier</td><td>Price</td><td>Use</td><td>Change</td></tr>";
+        echo "<tr><td>Nazov skladby</td><td>Nazov interpreta</td><td>Album</td><td>Zaner</td>";
 
 
     foreach ($data as $row) {
-            echo"<tr><td>".$row['nazov']."</td><td>".$row['popis']."</td><td>".$row['dnazov']."</td><td>".$row['cena']."</td><td>".$row['unazov']."</td><td><a href=\"update.php?id=".$row['id']."\">Change</a></td>";
+            echo"<tr><td>".$row['Nazov skladby']."</td><td>".$row['Nazov interpreta']."</td><td>".$row['Album']."</td><td>".$row['Zaner']."</td><td>";
 
     }
     echo "</table>";
