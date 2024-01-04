@@ -21,9 +21,9 @@
     <div class="w3-bar w3-red w3-card w3-left-align w3-large">
         <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
         <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
-        <a href="database.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Database</a>
-        <a href="form.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Form</a>
-        <a href="select.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Update</a>
+        <a href="database.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Tabulky</a>
+        <a href="form.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Pridaj skladbu</a>
+        <a href="select.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Skladby</a>
         <a href="delete.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Delete</a>
     </div>
 
@@ -31,14 +31,14 @@
     <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
         <a href="database.php" class="w3-bar-item w3-button w3-padding-large">Database</a>
         <a href="form.html" class="w3-bar-item w3-button w3-padding-large">Form</a>
-        <a href="select.php" class="w3-bar-item w3-button w3-padding-large">Update</a>
+        <a href="select.php" class="w3-bar-item w3-button w3-padding-large">Select</a>
         <a href="delete.php" class="w3-bar-item w3-button w3-padding-large">Delete</a>
     </div>
 </div>
 
 <!-- Header -->
 <header class="w3-container w3-red w3-center" style="padding:128px 16px">
-    <h1 class="w3-margin w3-jumbo">ADD NEW PART</h1>
+    <h1 class="w3-margin w3-jumbo">Pridaj novú skladbu</h1>
 </header>
 
 <!-- First Grid -->
@@ -47,40 +47,37 @@
         <div class="w3-twothird">
 
 <form action="add.php" method="post">
-    <label for="nazov">Part name:</label>
+    <label for="nazov">Nazov skladby:</label>
     <input type="text" id="nazov" name="nazov"><br>
 
-    <label for="popis">Description:</label>
-    <input type="text" id="popis" name="popis"><br>
+    <p>Album:</p>
+    <input type="radio" id="elan" name="id_interpret" value=1>
+    <label for="elan">Elán</label><br>
+    <input type="radio" id="ac/dc" name="id_interpret" value=2>
+    <label for="ac/dc">AC/DC</label><br>
+    <input type="radio" id="avicii" name="id_interpret" value=3>
+    <label for="avicii">Avicii</label><br>
 
-    <label for="cena">Price:</label>
-    <input type="number" id="cena" name="cena" min="1" max="10000"><br>
 
-    <p>Supplier:</p>
-    <input type="radio" id="festo" name="dodavatel" value=1>
-    <label for="festo">Festo</label><br>
-    <input type="radio" id="megabelt" name="dodavatel" value=2>
-    <label for="megabelt">MegaBelt</label><br>
-    <input type="radio" id="siemens" name="dodavatel" value=3>
-    <label for="siemens">Siemens</label><br>
-    <input type="radio" id="omron" name="dodavatel" value=4>
-    <label for="omron">Omron</label><br>
 
-    <p>Type of use:</p>
-    <input type="radio" id="elektricke" name="urcenie" value=1>
-    <label for="elektricke">Electrical</label><br>
-    <input type="radio" id="mechanicke" name="urcenie" value=2>
-    <label for="mechanicke">Mechanical</label><br>
-    <input type="radio" id="pneumaticke" name="urcenie" value=3>
-    <label for="pneumaticke">Pneumatic</label><br>
-    <input type="radio" id="hydraulicke" name="urcenie" value=4>
-    <label for="hydraulicke">Hydraulic</label><br>
+    <p>Album:</p>
+    <input type="radio" id="rabaka" name="id_album" value=1>
+    <label for="rabaka">Rabaka</label><br>
+    <input type="radio" id="rock or bust" name="id_album" value=2>
+    <label for="rock or bust">Rock or Bust</label><br>
+    <input type="radio" id="highway to hell" name="id_album" value=3>
+    <label for="highway to hell">Highway to Hell</label><br>
+    <input type="radio" id="stories" name="id_album" value=4>
+    <label for="stories">Stories</label><br>
 
-    <label for="min">Minimal amount:</label>
-    <input type="number" id="min" name="min" min="1" max="1000"><br>
+    <p>Zaner:</p>
+    <input type="radio" id="rock" name="id_zaner" value=1>
+    <label for="rock">Rock</label><br>
+    <input type="radio" id="pop" name="id_zaner" value=2>
+    <label for="pop">Pop</label><br>
+    <input type="radio" id="elektronicka hudba" name="id_zaner" value=3>
+    <label for="elektronicka hudba">Elektronicka hudba</label><br>
 
-    <label for="status">Accurate amount:</label>
-    <input type="number" id="status" name="status" min="1" max="10000"><br>
 
     <input type="submit">
 
@@ -90,7 +87,7 @@
         </div>
 
         <div class="w3-third w3-center">
-            <i class="fa fa-anchor w3-padding-64 w3-text-red"></i>
+            <i class="fa fa-headphones" style="font-size:400px;color:red;"></i>
         </div>
     </div>
 </div>

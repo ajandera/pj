@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+global$pdo; global$pdo; <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Add</title>
+    <title>form</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -21,9 +21,9 @@
     <div class="w3-bar w3-red w3-card w3-left-align w3-large">
         <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
         <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
-        <a href="database.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Database</a>
-        <a href="form.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Form</a>
-        <a href="select.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Update</a>
+        <a href="database.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Tabulky</a>
+        <a href="form.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Pridaj skladbu</a>
+        <a href="select.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Skladby</a>
         <a href="delete.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Delete</a>
     </div>
 
@@ -31,14 +31,14 @@
     <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
         <a href="database.php" class="w3-bar-item w3-button w3-padding-large">Database</a>
         <a href="form.html" class="w3-bar-item w3-button w3-padding-large">Form</a>
-        <a href="select.php" class="w3-bar-item w3-button w3-padding-large">Update</a>
+        <a href="select.php" class="w3-bar-item w3-button w3-padding-large">Select</a>
         <a href="delete.php" class="w3-bar-item w3-button w3-padding-large">Delete</a>
     </div>
 </div>
 
 <!-- Header -->
 <header class="w3-container w3-red w3-center" style="padding:128px 16px">
-    <h1 class="w3-margin w3-jumbo">ADD NEW PART</h1>
+    <h1 class="w3-margin w3-jumbo">Pridajte novú skladbu</h1>
 </header>
 
 <!-- First Grid -->
@@ -49,36 +49,29 @@
 require "conn.php";
 
 $nazov = $_POST['nazov'];
-$popis = $_POST['popis'];
-$cena = $_POST['cena'];
-$dodavatel = $_POST['dodavatel'];
-$urcenie = $_POST['urcenie'];
-$min = $_POST['min'];
-$status = $_POST['status'];
+$id_interpret = $_POST['id_interpret'];
+$id_album = $_POST['id_album'];
+$id_zaner = $_POST['id_zaner'];
 
 
-echo "You add <br>";
-echo "Name: $nazov <br>";
-echo "Description: $popis <br>";
-echo "Price: $cena <br>";
-echo "Supplier: $dodavatel <br>";
-echo "Type of use: $urcenie <br>";
-echo "Minimal amount: $min <br>";
-echo "Actual amount: $status <br>";
+echo "Pridali ste novú skladbu: <br>";
+echo "Nazov skladby: $nazov <br>";
+echo "Meno interpreta: $id_interpret <br>";
+echo "Album: $id_album <br>";
+echo "Zaner: $id_zaner <br>";
 
-if(!$nazov || !$popis || !$cena || !$dodavatel || !$urcenie) {
+if(!$nazov || !$id_interpret || !$id_album || !$id_zaner) {
     echo "Zoznam nebol pridany";
     exit();
 }
 
 try {
-    $stmt = $pdo->prepare("INSERT INTO diel (nazov, popis, id_dodavatel, cena, id_urcenie) VALUES(?,?,?,?,?)");
+    $stmt = $pdo->prepare("INSERT INTO skladba (nazov, id_interpret, id_album, id_zaner) VALUES(?,?,?,?,?)");
     $stmt->bindParam(1, $nazov);
-    $stmt->bindParam(2, $popis);
-    $stmt->bindParam(3, $dodavatel);
-    $stmt->bindParam(4, $cena);
-    $stmt->bindParam(5, $urcenie);
-    $stmt->execute();
+    $stmt->bindParam(2, $id_interpret);
+    $stmt->bindParam(3, $id_album);
+    $stmt->bindParam(4, $id_zaner);
+
 
     $last_id = $pdo->lastInsertId();
     echo "New record created successfully. Last inserted ID is: " . $last_id ;
@@ -87,16 +80,7 @@ try {
     echo $stmt . "<br>" . $e->getMessage();
 }
 
-try{
-    $stmt = $pdo->prepare("INSERT INTO stav (id_diel, min, status) VALUES(?,?,?)");
-    $stmt->bindParam(1, $last_id);
-    $stmt->bindParam(2, $min);
-    $stmt->bindParam(3, $status);
-    $stmt->execute();
-    echo "New record created successfully.";
-}  catch(PDOException $e) {
-    echo $stmt . "<br>" . $e->getMessage();
-}
+
 ?>
         </div>
 
