@@ -49,7 +49,7 @@ global$pdo; global$pdo; global$pdo; <!DOCTYPE html>
  require "conn.php";
 
  try{
-  $sql = "DROP TABLE skladba, interpret, album, zaner";
+  $sql = "DROP TABLE IF EXISTS skladba, interpret, album, zaner";
   $pdo->exec($sql);
 
   $sql = "CREATE TABLE skladba(
