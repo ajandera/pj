@@ -54,7 +54,7 @@
  require "conn.php";
 
  try{
-  $sql = "DROP TABLE kniha, zaner, vydavatelstvo, autor";
+  $sql = "DROP TABLE IF EXIST kniha, zaner, vydavatelstvo, autor";
   $pdo->exec($sql);
 
   $sql = "CREATE TABLE kniha(
