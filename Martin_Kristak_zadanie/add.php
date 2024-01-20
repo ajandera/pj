@@ -1,50 +1,32 @@
-global$pdo; global$pdo; <!DOCTYPE html>
-<html lang="en">
+global$pdo; global$pdo;
+<!DOCTYPE html>
+<html>
 <head>
-    <title>form</title>
+    <title>W3.CSS Template</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-        body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-        .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
-        .fa-anchor,.fa-coffee {font-size:200px}
-    </style>
 </head>
-<body>
+<body class="w3-content" style="max-width:1300px">
 
-<!-- Navbar -->
-<div class="w3-top">
-    <div class="w3-bar w3-red w3-card w3-left-align w3-large">
-        <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-        <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
-        <a href="database.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Tabulky</a>
-        <a href="form.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Pridaj skladbu</a>
-        <a href="select.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Skladby</a>
-        <a href="update.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Uprav</a>
+<!-- First Grid: Logo & About -->
+<div class="w3-row">
+    <div class="w3-half w3-black w3-container w3-center" style="height:700px">
+        <div class="w3-padding-64">
+            <h1>Menu</h1>
+        </div>
+        <div class="w3-padding-64">
+            <a href="index.html" class="w3-button w3-black w3-block w3-hover-blue-grey w3-padding-16">Home</a>
+            <a href="database.php" class="w3-button w3-black w3-block w3-hover-teal w3-padding-16">Tabulky</a>
+            <a href="form.html" class="w3-button w3-black w3-block w3-hover-dark-grey w3-padding-16">Pridaj skladbu</a>
+            <a href="select.php" class="w3-button w3-black w3-block w3-hover-brown w3-padding-16">Skladby</a>
+        </div>
     </div>
+    <div class="w3-half w3-blue-grey w3-container" style="height:700px">
+        <div class="w3-padding-64 w3-center">
+            <h1>Do databazy ste pridali novu skladbu</h1>
+            <div class="w3-left-align w3-padding-large">
 
-    <!-- Navbar on small screens -->
-    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-        <a href="database.php" class="w3-bar-item w3-button w3-padding-large">Tabulky</a>
-        <a href="form.html" class="w3-bar-item w3-button w3-padding-large">Pridaj skladbu</a>
-        <a href="select.php" class="w3-bar-item w3-button w3-padding-large">Skladby</a>
-        <a href="delete.php" class="w3-bar-item w3-button w3-padding-large">Delete</a>
-    </div>
-</div>
-
-<!-- Header -->
-<header class="w3-container w3-red w3-center" style="padding:128px 16px">
-    <h1 class="w3-margin w3-jumbo">Pridajte novú skladbu</h1>
-</header>
-
-<!-- First Grid -->
-<div class="w3-row-padding w3-padding-64 w3-container">
-    <div class="w3-content">
-        <div class="w3-twothird">
 <?php
 require "conn.php";
 
@@ -54,7 +36,7 @@ $id_album = $_POST['id_album'];
 $id_zaner = $_POST['id_zaner'];
 
 
-echo "Pridali ste novú skladbu: <br>";
+echo "Udaje o novej skladbe: <br>";
 echo "Nazov skladby: $nazov <br>";
 echo "Meno interpreta: $id_interpret <br>";
 echo "Album: $id_album <br>";
@@ -83,10 +65,7 @@ try {
 
 
 ?>
-        </div>
-
-        <div class="w3-third w3-center">
-            <i class="fa fa-anchor w3-padding-64 w3-text-red"></i>
+            </div>
         </div>
     </div>
 </div>
