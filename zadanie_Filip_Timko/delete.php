@@ -45,8 +45,8 @@
         <div class="w3-twothird">
 <?php
 require "conn.php";
-$id = $_REQUEST["id"];
-
+$id = $_REQUEST["id"]; //načítanie id, ktoré aj s údajmi sa vymaže
+//vymazanie údajov pre dané id pomocou sql príkazu DELETE
 try {
     $stmt = $pdo->prepare("DELETE FROM diel WHERE id = ?");
     $stmt->bindParam(1, $id);

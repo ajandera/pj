@@ -12,6 +12,10 @@
         body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
         .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
         .fa-anchor,.fa-coffee {font-size:200px}
+        table, th, td {
+            border: 2px solid black;
+            padding: 10px;
+        }
     </style>
 </head>
 <body>
@@ -45,7 +49,7 @@
         <div class="w3-twothird">
 <?php
 require "conn.php";
-try {
+try { //načítanie údajov z daných tabuliek pomocou príkazu SELECT
     $stmt = $pdo->prepare("SELECT diel.id, diel.nazov, diel.popis, dodavatel.dnazov, diel.cena, urcenie.unazov FROM diel , dodavatel , urcenie  WHERE diel.id_dodavatel = dodavatel.id_dodavatel AND diel.id_urcenie = urcenie.id_urcenie");
     $stmt->bindParam(1, $tableName);
     $stmt->execute();
@@ -57,17 +61,39 @@ try {
 ?>
 <table class="tab2">
     <?php
-
+    echo "<table>"; //vytvorenie tabuľky na webstránke
         echo "<tr><td>Name</td><td>Descripton</td><td>Supplier</td><td>Price</td><td>Use</td><td>Modify/Erase</td></tr>";
 
-
+    //naplnenie údajov do tabuľky aby sa vypísali na webstránke
     foreach ($data as $row) {
-            echo"<tr><td>".$row['nazov']."</td><td>".$row['popis']."</td><td>".$row['dnazov']."</td><td>".$row['cena']."</td><td>".$row['unazov']."</td><td><a href=\"update.php?id=".$row['id']."\">Change</a><a href=\"delete.php?id=".$row['id']."\">Delete</td>";
+            echo"<tr><td>".$row['nazov']."</td><td>".$row['popis']."</td><td>".$row['dnazov']."</td><td>".$row['cena']."</td><td>".$row['unazov']."</td><td><a href=\"update.php?id=".$row['id']."\">Change</a><a href=\"delete.php?id=".$row['id']."\">Delete</td></tr>";
 
     }
     echo "</table>";
 
-?>
+    try { //načítanie údajov z daných tabuliek pomocou príkazu SELECT
+        $stmt = $pdo->prepare("SELECT diel.nazov, stav.min, stav.status FROM stav , diel  WHERE stav.id_diel = diel.id");
+        $stmt->bindParam(1, $tableName);
+        $stmt->execute();
+        $data = $stmt->fetchAll();
+    } catch (PDOException $e) {
+        displayErrMsg("Error: " . $e->getMessage());
+        exit();
+    }
+    ?>
+    <table class="tab2">
+        <?php
+        echo "<table>"; //vytvorenie tabuľky na webstránke
+        echo "<tr><td>Name</td><td>Minimal amount</td><td>Current</td></tr>";
+
+        //naplnenie údajov do tabuľky aby sa vypísali na webstránke
+        foreach ($data as $row) {
+            echo"<tr><td>".$row['nazov']."</td><td>".$row['min']."</td><td>".$row['status']."</td></tr>";
+
+        }
+        echo "</table>";
+
+        ?>
     </div>
 
     <div class="w3-third w3-center">
@@ -87,5 +113,5 @@ try {
                     }
                 }
             </script>
-    </body>
-    </html>
+</body>
+</html>

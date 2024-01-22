@@ -46,6 +46,7 @@
 <?php
 require "conn.php";
 
+//načítanie údajov z formulára pre úpravu údajov
 $id = $_POST['id'];
 $nazov = $_POST['nazov'];
 $popis = $_POST['popis'];
@@ -69,7 +70,7 @@ if(!$nazov || !$popis || !$cena || !$dodavatel || !$urcenie) {
     exit();
 }
 
-try {
+try { //aktualizovanie údajov zadaných z formulára
     $stmt = $pdo->prepare("UPDATE diel SET nazov = ?, popis = ?, id_dodavatel = ?, cena = ?, id_urcenie = ? where id = ?");
     $stmt->bindParam(1, $nazov);
     $stmt->bindParam(2, $popis);

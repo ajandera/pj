@@ -45,36 +45,40 @@
   <div class="w3-twothird">
 <?php
  require "conn.php";
-
+//vytvorenie tabuliek a následné ich naplnenie pomocou sql príkazu INSERT
  try{
-  $sql = "DROP TABLE diel, stav, dodavatel, urcenie";
-  $pdo->exec($sql);
+  $sql = "DROP TABLE IF EXISTS diel, stav, dodavatel, urcenie"; //zhodenie tabuľky ak existuje
+  $pdo->exec($sql); //spustenie premennej $sql
 
   $sql = "CREATE TABLE diel(
-    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nazov VARCHAR(25),
-    popis VARCHAR(50),
-    id_dodavatel int NOT NULL,
-    cena int,
-    id_urcenie int NOT NULL)";
-  $pdo->exec($sql);
+            id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            nazov VARCHAR(25),
+            popis VARCHAR(50),
+            id_dodavatel int NOT NULL,
+            cena int,
+            id_urcenie int NOT NULL)";
+            // vytvorenie tabuľky diel a definovanie typu udajov, ktore su v nej zapisane
+  $pdo->exec($sql); //spustenie premennej $sql
 
   $sql= "CREATE TABLE stav(
-    id_stav int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    id_diel int NOT NULL,
-    min int,
-    status int)";
-  $pdo->exec($sql);
+            id_stav int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            id_diel int NOT NULL,
+            min int,
+            status int)";
+            // vytvorenie tabuľky stav a definovanie typu udajov, ktore su v nej zapisane
+  $pdo->exec($sql); //spustenie premennej $sql
 
   $sql= "CREATE TABLE dodavatel(
-    id_dodavatel int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    dnazov VARCHAR(25))";
-  $pdo->exec($sql);
+            id_dodavatel int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            dnazov VARCHAR(25))";
+            // vytvorenie tabuľky dodavatel a definovanie typu udajov, ktore su v nej zapisane
+  $pdo->exec($sql); //spustenie premennej $sql
 
   $sql= "CREATE TABLE urcenie(
-    id_urcenie int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    unazov VARCHAR(25))";
-  $pdo->exec($sql);
+            id_urcenie int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            unazov VARCHAR(25))";
+            // vytvorenie tabuľky urcenie a definovanie typu udajov, ktore su v nej zapisane
+  $pdo->exec($sql); //spustenie premennej $sql
   echo "Tables created successfully";
  }
   catch (PDOException $e) {
@@ -82,7 +86,7 @@
   die();
  }
  echo "<br><br>";
- try{
+ try{ //naplnenie tabuliek udajmi
   $sql = "INSERT INTO diel(id, nazov, popis, id_dodavatel, cena, id_urcenie) VALUES
                                                                        (1,'Mechanical belt', 'Mechanical belt, 2x30', 2, 7, 2),
                                                                        (2,'Inductive sensor', 'inductive sensor SIEH-M12B-PS-S-L', 1, 71, 1),

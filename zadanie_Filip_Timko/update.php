@@ -46,48 +46,49 @@
 <?php
 require "conn.php";
 
-$id = $_REQUEST["id"];
+$id = $_REQUEST["id"]; //načítanie id, pre ktoré id chceme údaje zmeniť
 echo "For ID of the part use this number: $id";
+//vytvorenie formulára pre zmenu údajov pomocou príkazu UPDATE
 ?>
-<form action="uprav.php" method="post">
-    <label for="id">Part ID:</label>
-    <input type="number" id="id" name="id" min="1" required><br>
+            <form action="uprav.php" method="post">
+            <label for="id">Part ID:</label>
+            <input type="number" id="id" name="id" min="1" required><br>
 
-    <label for="nazov">Part name:</label>
-    <input type="text" id="nazov" name="nazov" required><br>
+            <label for="nazov">Part name:</label>
+            <input type="text" id="nazov" name="nazov" required><br>
 
-    <label for="popis">Description:</label>
-    <input type="text" id="popis" name="popis" required><br>
+            <label for="popis">Description:</label>
+            <input type="text" id="popis" name="popis" required><br>
 
-    <label for="cena">Price:</label>
-    <input type="number" id="cena" name="cena" min="1" max="10000" required><br>
+            <label for="cena">Price:</label>
+            <input type="number" id="cena" name="cena" min="1" max="10000" required><br>
 
-    <p>Supplier:</p>
-    <input type="radio" id="festo" name="dodavatel" value=1 required>
-    <label for="festo">Festo</label><br>
-    <input type="radio" id="megabelt" name="dodavatel" value=2>
-    <label for="megabelt">MegaBelt</label><br>
-    <input type="radio" id="siemens" name="dodavatel" value=3>
-    <label for="siemens">Siemens</label><br>
-    <input type="radio" id="omron" name="dodavatel" value=4>
-    <label for="omron">Omron</label><br>
+            <p>Supplier:</p>
+            <input type="radio" id="festo" name="dodavatel" value=1 required>
+            <label for="festo">Festo</label><br>
+            <input type="radio" id="megabelt" name="dodavatel" value=2>
+            <label for="megabelt">MegaBelt</label><br>
+            <input type="radio" id="siemens" name="dodavatel" value=3>
+            <label for="siemens">Siemens</label><br>
+            <input type="radio" id="omron" name="dodavatel" value=4>
+            <label for="omron">Omron</label><br>
 
-    <p>Type of use:</p>
-    <input type="radio" id="elektricke" name="urcenie" value=1 required>
-    <label for="elektricke">Electrical</label><br>
-    <input type="radio" id="mechanicke" name="urcenie" value=2>
-    <label for="mechanicke">Mechanical</label><br>
-    <input type="radio" id="pneumaticke" name="urcenie" value=3>
-    <label for="pneumaticke">Pneumatic</label><br>
-    <input type="radio" id="hydraulicke" name="urcenie" value=4>
-    <label for="hydraulicke">Hydraulic</label><br>
-
-
-    <input type="submit">
+            <p>Type of use:</p>
+            <input type="radio" id="elektricke" name="urcenie" value=1 required>
+            <label for="elektricke">Electrical</label><br>
+            <input type="radio" id="mechanicke" name="urcenie" value=2>
+            <label for="mechanicke">Mechanical</label><br>
+            <input type="radio" id="pneumaticke" name="urcenie" value=3>
+            <label for="pneumaticke">Pneumatic</label><br>
+            <input type="radio" id="hydraulicke" name="urcenie" value=4>
+            <label for="hydraulicke">Hydraulic</label><br>
 
 
+            <input type="submit">
 
-</form>
+
+
+            </form>
 </div>
 
 <div class="w3-third w3-center">

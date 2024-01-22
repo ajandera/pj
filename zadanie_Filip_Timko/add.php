@@ -46,6 +46,7 @@
 <?php
 require "conn.php";
 
+//načítanie údajov z formulára pre zápis nového dielu
 $nazov = $_POST['nazov'];
 $popis = $_POST['popis'];
 $cena = $_POST['cena'];
@@ -54,7 +55,7 @@ $urcenie = $_POST['urcenie'];
 $min = $_POST['min'];
 $status = $_POST['status'];
 
-
+//vypísanie údajov, ktoré boli zapísané do formulára
 echo "You add <br>";
 echo "Name: $nazov <br>";
 echo "Description: $popis <br>";
@@ -69,7 +70,7 @@ if(!$nazov || !$popis || !$cena || !$dodavatel || !$urcenie) {
     exit();
 }
 
-try {
+try { //zapísanie údajov do tabuľky diel
     $stmt = $pdo->prepare("INSERT INTO diel (nazov, popis, id_dodavatel, cena, id_urcenie) VALUES(?,?,?,?,?)");
     $stmt->bindParam(1, $nazov);
     $stmt->bindParam(2, $popis);
@@ -85,7 +86,7 @@ try {
     echo $stmt . "<br>" . $e->getMessage();
 }
 
-try{
+try{ //zapísanie údajov do tabuľky stav
     $stmt = $pdo->prepare("INSERT INTO stav (id_diel, min, status) VALUES(?,?,?)");
     $stmt->bindParam(1, $last_id);
     $stmt->bindParam(2, $min);
